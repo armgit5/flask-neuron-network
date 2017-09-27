@@ -34,6 +34,7 @@ def upload():
             flash("The picture is a cat")
         else:
             flash("The picture is not a cat")
+        os.remove(destination)
     
     return redirect(url_for('index'))
 
