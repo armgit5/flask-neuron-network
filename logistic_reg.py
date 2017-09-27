@@ -25,10 +25,11 @@ def predictImage(imageName):
     my_predicted_image = predict(d["w"], d["b"], my_image)
     # plt.imshow(my_image.reshape((num_px, num_px, 3)))
     output = int(np.squeeze(my_predicted_image))
-    print(output)
     if (output == 1):
         print("the picture is a cat")
+        return 1
     else:
         print("it's not a cat")
-    
+        return 0
+        
 #predictImage("cat.jpg")

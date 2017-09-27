@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash, \
+                redirect, url_for
+    
 from logistic_reg import predictImage
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret'
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -26,9 +29,13 @@ def upload():
         destination = "/".join([target, filename])
         print(destination)
         upload.save(destination)
-        predictImage(upload.filename)
+        isCat = predictImage(upload.filename)
+        if isCat:
+            flash("The picture is a cat")
+        else:
+            flash("The picture is not a cat")
     
-    return render_template("complete.html")
+    return redirect(url_for('index'))
 
 if __name__ == "__main__":
     app.run(port=4555, debug=True)
