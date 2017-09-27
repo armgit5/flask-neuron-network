@@ -5,7 +5,7 @@ from functions import predict
 from scipy import ndimage
 import numpy as np
 import scipy
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 ## Read Model
 file = open("model.pickle", "rb")
